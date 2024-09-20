@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct CategoryList: View {
+struct CategoryListView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \Category.name) var categories: [Category]
     
@@ -58,11 +58,11 @@ struct CategoryList: View {
         .sheet(isPresented: $showAddEditSheet, onDismiss: {
             categoryToEdit = nil
         }) {
-            AddEditCategory(categoryToEdit: $categoryToEdit)
+            AddEditCategoryView(categoryToEdit: $categoryToEdit)
         }
     }
 }
 
 #Preview {
-    CategoryList()
+    CategoryListView()
 }

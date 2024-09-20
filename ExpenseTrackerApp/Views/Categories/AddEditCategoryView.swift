@@ -8,7 +8,7 @@
 import SwiftUI
 import SymbolPicker
 
-struct AddEditCategory: View {
+struct AddEditCategoryView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
     
@@ -52,7 +52,7 @@ struct AddEditCategory: View {
                 
                 Section("Preview") {
                     if let rgb = categoryColor.toRGB() {
-                        CategoryListItem(category: Category(name: categoryName, color: ColorRGB(red: rgb.red, green: rgb.green, blue: rgb.blue), icon: categoryIcon))
+                        CategoryListItem(category: Category(name: categoryName.isEmpty ? "Category name" : categoryName, color: ColorRGB(red: rgb.red, green: rgb.green, blue: rgb.blue), icon: categoryIcon))
                     } else {
                         Text("Invalid color selected")
                     }
@@ -99,5 +99,5 @@ struct AddEditCategory: View {
 }
 
 #Preview {
-    AddEditCategory(categoryToEdit: Binding.constant(nil))
+    AddEditCategoryView(categoryToEdit: Binding.constant(nil))
 }

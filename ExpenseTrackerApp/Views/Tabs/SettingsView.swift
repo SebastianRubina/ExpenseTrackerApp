@@ -12,7 +12,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                NavigationLink("Categories", destination: CategoryList())
+                NavigationLink("Categories", destination: CategoryListView())
             }
             .navigationTitle("Settings")
         }
