@@ -26,6 +26,9 @@ struct AddEditCategory: View {
             Form {
                 Section("Name") {
                     TextField("Enter your category name", text: $categoryName)
+                        .onAppear {
+                            UITextField.appearance().clearButtonMode = .whileEditing
+                        }
                 }
                 
                 Section("Icon") {
