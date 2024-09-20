@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F6FF3FDE2C9D297B00796769 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = F6FF3FDD2C9D297B00796769 /* SymbolPicker */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		F6FF3FAF2C9D023D00796769 /* ExpenseTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6FF3FDE2C9D297B00796769 /* SymbolPicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = ExpenseTrackerApp;
 			packageProductDependencies = (
+				F6FF3FDD2C9D297B00796769 /* SymbolPicker */,
 			);
 			productName = ExpenseTrackerApp;
 			productReference = F6FF3FAF2C9D023D00796769 /* ExpenseTrackerApp.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = F6FF3FA62C9D023D00796769;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F6FF3FDC2C9D297B00796769 /* XCRemoteSwiftPackageReference "SymbolPicker" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F6FF3FB02C9D023D00796769 /* Products */;
 			projectDirPath = "";
@@ -324,6 +333,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F6FF3FDC2C9D297B00796769 /* XCRemoteSwiftPackageReference "SymbolPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/xnth97/SymbolPicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F6FF3FDD2C9D297B00796769 /* SymbolPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6FF3FDC2C9D297B00796769 /* XCRemoteSwiftPackageReference "SymbolPicker" */;
+			productName = SymbolPicker;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F6FF3FA72C9D023D00796769 /* Project object */;
 }
