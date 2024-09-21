@@ -82,6 +82,15 @@ struct AddEditCategoryView: View {
                 }
                 .listRowBackground(Color.clear)
                 .listRowInsets(EdgeInsets())
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "x.circle")
+                        }
+                    }
+                }
                 .onAppear {
                     print("Category to edit: \(categoryToEdit?.name ?? "none")")
                     isEditMode = categoryToEdit != nil

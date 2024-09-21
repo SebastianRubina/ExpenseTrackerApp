@@ -11,7 +11,7 @@ import SwiftData
 @main
 struct ExpenseTrackerAppApp: App {
     let container: ModelContainer = {
-        let schema = Schema([Category.self, Expense.self])
+        let schema = Schema([Category.self, Entry.self])
         let container = try! ModelContainer(for: schema)
         return container
     }()

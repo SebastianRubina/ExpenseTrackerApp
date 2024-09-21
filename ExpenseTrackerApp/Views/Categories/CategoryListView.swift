@@ -26,6 +26,10 @@ struct CategoryListView: View {
                         .listRowInsets(EdgeInsets()) // hides list item spacing
                         .swipeActions {
                             Button("Delete") {
+                                if categories.count == 1 {
+                                    // TODO: Add alert here
+                                    return
+                                }
                                 withAnimation {
                                     context.delete(category)
                                     try! context.save()

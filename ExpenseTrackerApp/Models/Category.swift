@@ -10,17 +10,20 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Category: Identifiable {
+class Category: Identifiable, Hashable {
     var id: String
     var name: String
     var color: ColorRGB
     var icon: String
+    
+    var entries: [Entry]
     
     init(name: String = "", color: ColorRGB = ColorRGB(), icon: String = "x.circle") {
         self.id = UUID().uuidString
         self.name = name
         self.color = color
         self.icon = icon
+        self.entries = []
     }
 }
 

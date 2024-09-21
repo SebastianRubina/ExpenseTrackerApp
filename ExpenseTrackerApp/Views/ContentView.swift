@@ -16,8 +16,8 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            Tab("Expenses", systemImage: "wallet.bifold") {
-                ExpenseListView()
+            Tab("Entries", systemImage: "wallet.bifold") {
+                EntryListView()
             }
             
             Tab("Settings", systemImage: "gearshape") {
