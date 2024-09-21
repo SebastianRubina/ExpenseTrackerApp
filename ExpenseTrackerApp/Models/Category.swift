@@ -16,6 +16,7 @@ class Category: Identifiable, Hashable {
     var color: ColorRGB
     var icon: String
     
+    @Relationship(deleteRule: .cascade, inverse: \Entry.category)
     var entries: [Entry]
     
     init(name: String = "", color: ColorRGB = ColorRGB(), icon: String = "x.circle") {

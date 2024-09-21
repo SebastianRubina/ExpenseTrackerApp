@@ -16,8 +16,8 @@ class Entry: Identifiable {
     var type: EntryType
     var amount: Double
     var notes: String
-    @Relationship(inverse: \Category.entries)
-    var category: Category
+    
+    var category: Category?
     
     init() {
         self.id = UUID().uuidString

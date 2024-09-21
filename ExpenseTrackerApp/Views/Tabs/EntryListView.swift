@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct EntryListView: View {
+    @AppStorage("warningThreshold") private var warningThreshold = "100"
     @Query private var entries: [Entry]
     
     @State private var showAddEditSheet = false
@@ -41,14 +42,16 @@ struct EntryListView: View {
                         // Use the helper function to break down the logic
                         ForEach(groupEntriesByDay(), id: \.key) { (date, entriesForDay) in
                             Section(header: Text(TextUtils.formatDateToHumanReadable(date, format: "MMM d, yyyy"))) {
-                                ForEach(entriesForDay) { entry in
+                                ForEach(entriesForDay.sorted(by: { $0.date > $1.date })) { entry in
                                     HStack {
-                                        Image(systemName: entry.category.icon)
-                                            .frame(width: 40, height: 40)
-                                            .background {
-                                                Color(.sRGB, red: entry.category.color.red, green: entry.category.color.green, blue: entry.category.color.blue)
-                                            }
-                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        if let entryCategory = entry.category {
+                                            Image(systemName: entryCategory.icon)
+                                                .frame(width: 40, height: 40)
+                                                .background {
+                                                    Color(.sRGB, red: entryCategory.color.red, green: entryCategory.color.green, blue: entryCategory.color.blue)
+                                                }
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        }
                                         
                                         VStack(alignment: .leading) {
                                             Text(entry.name)
@@ -61,7 +64,7 @@ struct EntryListView: View {
                                         Spacer()
                                         
                                         Text("\(entry.type == .expense ? "-" : "+") \(entry.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
-                                            .foregroundStyle(entry.type == .expense ? .white : .green)
+                                            .foregroundStyle(entry.type == .expense ? entry.amount >= Double(warningThreshold) ?? 100 ? .red : .white : .green)
                                             .font(.title2)
                                     }
                                 }

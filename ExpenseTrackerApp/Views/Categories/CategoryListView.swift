@@ -31,6 +31,7 @@ struct CategoryListView: View {
                                     return
                                 }
                                 withAnimation {
+                                    // TODO: Also warn users that deleting cascades.
                                     context.delete(category)
                                     try! context.save()
                                 }

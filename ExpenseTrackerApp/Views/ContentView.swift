@@ -24,6 +24,7 @@ struct ContentView: View {
                 SettingsView()
             }
         }
+        .tint(.pink)
         .onAppear {
             if firstOpen {
                 CategoryUtils.initializeDefaultCategories(context: context)
