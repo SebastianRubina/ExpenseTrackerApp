@@ -10,6 +10,8 @@ import SwiftData
 
 @main
 struct ExpenseTrackerAppApp: App {
+    @State var storeViewModel: StoreViewModel = StoreViewModel()
+    
     let container: ModelContainer = {
         let schema = Schema([Category.self, Entry.self])
         let container = try! ModelContainer(for: schema)
@@ -20,6 +22,7 @@ struct ExpenseTrackerAppApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(container)
+                .environment(storeViewModel)
         }
     }
 }

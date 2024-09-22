@@ -7,8 +7,10 @@
 
 import SwiftUI
 import SwiftData
+import StoreKit
 
 struct EntryListView: View {
+    @Environment(\.requestReview) private var requestReview
     @AppStorage("warningThreshold") private var warningThreshold = "100"
     @Query private var entries: [Entry]
     
@@ -84,8 +86,13 @@ struct EntryListView: View {
                 }
             }
             .sheet(isPresented: $showAddEditSheet) {
+                if entries.count % 20 == 0 {
+                    requestReview()
+                }
+            } content: {
                 AddEditEntryView(entryToEdit: $entryToEdit)
             }
+            
         }
     }
 }

@@ -15,6 +15,9 @@ struct CategoryListView: View {
     @State private var showAddEditSheet = false
     @State private var categoryToEdit: Category?
     
+    @State private var showOneCategoryAlert = false
+    @State private var showCategoryDeletionConfirmation = false
+    
     var body: some View {
         VStack {
             if categories.isEmpty {
@@ -27,13 +30,11 @@ struct CategoryListView: View {
                         .swipeActions {
                             Button("Delete") {
                                 if categories.count == 1 {
-                                    // TODO: Add alert here
+                                    showOneCategoryAlert = true
                                     return
                                 }
                                 withAnimation {
-                                    // TODO: Also warn users that deleting cascades.
-                                    context.delete(category)
-                                    try! context.save()
+                                    showCategoryDeletionConfirmation = true
                                 }
                             }
                             .tint(.red)
@@ -44,6 +45,14 @@ struct CategoryListView: View {
                                 showAddEditSheet = true
                             }
                             .tint(.blue)
+                        }
+                        .confirmationDialog("Deleting a category will cascade to all of its entries. Are you sure you want to delete \(category.name)\(category.entries.count > 0 ? " and all its entries? (\(category.entries.count))" : "")?", isPresented: $showCategoryDeletionConfirmation, titleVisibility: .visible) {
+                            Button("Delete", role: .destructive) {
+                                withAnimation {
+                                    context.delete(category)
+                                    try! context.save()
+                                }
+                            }
                         }
                 }
                 .listStyle(.automatic)
@@ -59,6 +68,9 @@ struct CategoryListView: View {
                         .labelStyle(.titleOnly)
                 }
             }
+        }
+        .alert("You must have at least one category.", isPresented: $showOneCategoryAlert) {
+            Button("Ok", role: .cancel) {  }
         }
         .sheet(isPresented: $showAddEditSheet, onDismiss: {
             categoryToEdit = nil
