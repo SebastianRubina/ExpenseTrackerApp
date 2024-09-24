@@ -84,7 +84,7 @@ struct SubscriptionView: View {
                         await buy(product: product)
                     }
                 } label: {
-                    Text(selectedPlan == "Weekly" ? "Try For Free" : "Get Started")
+                    Text(selectedPlan == "expenses.subscription.weekly" ? "Try For Free" : "Get Started")
                         .font(.title2)
                         .bold()
                         .frame(maxWidth: .infinity)
@@ -93,6 +93,15 @@ struct SubscriptionView: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.pink)
                 .padding()
+                
+                Button("Restore") {
+                    Task {
+                        await restorePurchases()
+                    }
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
+                .underline()
             }
         }
     }
@@ -145,6 +154,15 @@ struct SubscriptionView: View {
             }
         } catch {
             print("Purchase failed.")
+        }
+    }
+    
+    func restorePurchases() async {
+        do {
+            try await storeViewModel.restorePurchases()
+            print("Restored purchases successfully.")
+        } catch {
+            print("Failed to restore purchases.")
         }
     }
 }

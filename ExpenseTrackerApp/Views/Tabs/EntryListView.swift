@@ -10,6 +10,7 @@ import SwiftData
 import StoreKit
 
 struct EntryListView: View {
+    @Environment(\.modelContext) private var context
     @Environment(\.requestReview) private var requestReview
     @AppStorage("warningThreshold") private var warningThreshold = "100"
     @Query private var entries: [Entry]
@@ -45,30 +46,28 @@ struct EntryListView: View {
                         ForEach(groupEntriesByDay(), id: \.key) { (date, entriesForDay) in
                             Section(header: Text(TextUtils.formatDateToHumanReadable(date, format: "MMM d, yyyy"))) {
                                 ForEach(entriesForDay.sorted(by: { $0.date > $1.date })) { entry in
-                                    HStack {
-                                        if let entryCategory = entry.category {
-                                            Image(systemName: entryCategory.icon)
-                                                .frame(width: 40, height: 40)
-                                                .background {
-                                                    Color(.sRGB, red: entryCategory.color.red, green: entryCategory.color.green, blue: entryCategory.color.blue)
+                                    EntryListItem(entry: entry)
+                                        .swipeActions {
+                                            Button {
+                                                withAnimation {
+                                                    context.delete(entry)
+                                                    try! context.save()
                                                 }
-                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
+                                                    .labelStyle(IconOnlyLabelStyle())
+                                            }
+                                            .tint(.red)
+                                            
+                                            Button {
+                                                entryToEdit = entry
+                                                showAddEditSheet = true
+                                            } label: {
+                                                Label("Edit", systemImage: "pencil")
+                                                    .labelStyle(IconOnlyLabelStyle())
+                                            }
+                                            .tint(.blue)
                                         }
-                                        
-                                        VStack(alignment: .leading) {
-                                            Text(entry.name)
-                                                .font(.headline)
-                                            Text(TextUtils.formatDateToHumanReadable(entry.date, format: "h:mm a"))
-                                                .foregroundStyle(.secondary)
-                                                .font(.subheadline)
-                                        }
-                                        
-                                        Spacer()
-                                        
-                                        Text("\(entry.type == .expense ? "-" : "+") \(entry.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
-                                            .foregroundStyle(entry.type == .expense ? entry.amount >= Double(warningThreshold) ?? 100 ? .red : .white : .green)
-                                            .font(.title2)
-                                    }
                                 }
                             }
                         }

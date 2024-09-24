@@ -17,12 +17,17 @@ struct CategoryUtils {
         if existingCategories?.isEmpty ?? true {
             // No categories exist, so add default categories
             let defaultCategories = [
-                Category(name: "Groceries", color: ColorRGB(red: 48/255, green: 176/255, blue: 199/255), icon: "cart.fill"),
-                Category(name: "Dining Out", color: ColorRGB(red: 0/255, green: 199/255, blue: 190/255), icon: "fork.knife"),
-                Category(name: "Transportation", color: ColorRGB(red: 50/255, green: 173/255, blue: 230/255), icon: "car.fill"),
-                Category(name: "Entertainment", color: ColorRGB(red: 88/255, green: 86/255, blue: 214/255), icon: "film.fill"),
-                Category(name: "Utilities", color: ColorRGB(red: 255/255, green: 149/255, blue: 0/255), icon: "bolt.fill"),
-                Category(name: "Health & Fitness", color: ColorRGB(red: 255/255, green: 45/255, blue: 85/255), icon: "heart.fill")
+                Category(name: "Groceries", color: ColorRGB(red: 102/255, green: 192/255, blue: 204/255), icon: "cart.fill"), // Stronger teal
+                Category(name: "Dining Out", color: ColorRGB(red: 85/255, green: 205/255, blue: 198/255), icon: "fork.knife"), // Bolder aqua
+                Category(name: "Transportation", color: ColorRGB(red: 90/255, green: 175/255, blue: 220/255), icon: "car.fill"), // Deeper sky blue
+                Category(name: "Entertainment", color: ColorRGB(red: 130/255, green: 120/255, blue: 220/255), icon: "film.fill"), // Deeper purple
+                Category(name: "Utilities", color: ColorRGB(red: 255/255, green: 165/255, blue: 79/255), icon: "bolt.fill"), // Stronger orange
+                Category(name: "Health & Fitness", color: ColorRGB(red: 255/255, green: 92/255, blue: 118/255), icon: "heart.fill"), // Punchier pink
+                
+                // Stronger contrast for additional categories
+                Category(name: "Salary", color: ColorRGB(red: 110/255, green: 180/255, blue: 145/255), icon: "dollarsign.circle.fill"), // Stronger pastel green
+                Category(name: "Other Income", color: ColorRGB(red: 150/255, green: 210/255, blue: 85/255), icon: "banknote.fill"), // Bolder pastel greenish yellow
+                //                Category(name: "Settled Debt", color: ColorRGB(red: 230/255, green: 190/255, blue: 85/255), icon: "person.crop.circle.badge.exclamationmark.fill") // Stronger yellow
             ]
             
             for category in defaultCategories {
