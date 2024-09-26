@@ -10,6 +10,7 @@ import SwiftData
 
 struct SettingsView: View {
     @AppStorage("warningThreshold") private var warningThreshold: String = "100"
+    @AppStorage("selectedCurrency") private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
     
     @Environment(StoreViewModel.self) private var storeViewModel
     var body: some View {
@@ -35,12 +36,31 @@ struct SettingsView: View {
                     Text("Expenses that exceed this threshold will be highlighted in red in your entry list.")
                 }
                 
-                Section("Feedback") {
+                Section {
                     Button(action: {
                         sendEmail()
                     }) {
                         Text("Send Feedback or Feature Suggestions")
-                            .foregroundColor(.blue)
+                            .foregroundColor(.pink)
+                    }
+                } header: {
+                    Text("Feedback")
+                } footer: {
+                    Text("We’d love to hear your thoughts or suggestions! Your feedback will be taken into consideration for future updates.")
+                }
+                
+                let availableCurrencies: [String] = {
+                    let locales = Locale.availableIdentifiers.map { Locale(identifier: $0) }
+                    let uniqueCurrencies = Set(locales.compactMap { $0.currency?.identifier })
+                    return Array(uniqueCurrencies).sorted()
+                }()
+                
+                Section("Currency Selection") {
+                    Picker("Currency", selection: $selectedCurrency) {
+                        ForEach(availableCurrencies, id: \.self) { currencyCode in
+                            Text("\(currencyName(currencyCode: currencyCode)) (\(currencyCode))")
+                                .tag(currencyCode)
+                        }
                     }
                 }
                 
@@ -52,7 +72,19 @@ struct SettingsView: View {
                     } label: {
                         Text("Restore purchases")
                     }
-                    .tint(.blue)
+                    .tint(.pink)
+                }
+                
+                Section {
+                    HStack {
+                        NavigationLink("View Roadmap") {
+                            RoadmapView()
+                        }
+                    }
+                } header: {
+                    Text("Roadmap")
+                } footer: {
+                    Text("Explore upcoming features and improvements planned for future releases!")
                 }
             }
             .navigationTitle("Settings")
@@ -66,6 +98,11 @@ struct SettingsView: View {
         } catch {
             print("Failed to restore purchases.")
         }
+    }
+    
+    func currencyName(currencyCode: String) -> String {
+        let locale = Locale(identifier: Locale.identifier(fromComponents: [NSLocale.Key.currencyCode.rawValue: currencyCode]))
+        return locale.localizedString(forCurrencyCode: currencyCode) ?? currencyCode
     }
     
     private func sendEmail() {

@@ -24,6 +24,10 @@ struct ContentView: View {
                     EntryListView()
                 }
                 
+                Tab("Insights", systemImage: "chart.pie") {
+                    InsightsView()
+                }
+                
                 Tab("Settings", systemImage: "gearshape") {
                     SettingsView()
                 }

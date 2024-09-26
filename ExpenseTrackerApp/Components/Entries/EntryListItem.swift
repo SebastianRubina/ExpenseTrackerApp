@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EntryListItem: View {
     @AppStorage("warningThreshold") private var warningThreshold: String = "100"
+    @AppStorage("selectedCurrency") private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
     var entry: Entry
     
     var body: some View {
@@ -32,7 +33,7 @@ struct EntryListItem: View {
             
             Spacer()
             
-            Text("\(entry.type == .expense ? "-" : "+") \(entry.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
+            Text("\(entry.type == .expense ? "-" : "+") \(entry.amount, format: .currency(code: selectedCurrency))")
                 .foregroundStyle(entry.type == .expense ? entry.amount >= Double(warningThreshold) ?? 100 ? .red : .primary : .green)
                 .font(.title3)
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F60AA2512CA502EA009771E0 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = F60AA2502CA502EA009771E0 /* Inject */; };
 		F67CD12B2CA11DD800912D10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67CD12A2CA11DD800912D10 /* StoreKit.framework */; };
 		F6FF3FDE2C9D297B00796769 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = F6FF3FDD2C9D297B00796769 /* SymbolPicker */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 			files = (
 				F6FF3FDE2C9D297B00796769 /* SymbolPicker in Frameworks */,
 				F67CD12B2CA11DD800912D10 /* StoreKit.framework in Frameworks */,
+				F60AA2512CA502EA009771E0 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,7 @@
 			name = ExpenseTrackerApp;
 			packageProductDependencies = (
 				F6FF3FDD2C9D297B00796769 /* SymbolPicker */,
+				F60AA2502CA502EA009771E0 /* Inject */,
 			);
 			productName = ExpenseTrackerApp;
 			productReference = F6FF3FAF2C9D023D00796769 /* ExpenseTrackerApp.app */;
@@ -114,6 +117,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				F6FF3FDC2C9D297B00796769 /* XCRemoteSwiftPackageReference "SymbolPicker" */,
+				F60AA24F2CA502EA009771E0 /* XCRemoteSwiftPackageReference "Inject" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F6FF3FB02C9D023D00796769 /* Products */;
@@ -203,6 +207,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-Xlinker",
+					"-interposable",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -355,6 +363,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F60AA24F2CA502EA009771E0 /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.2;
+			};
+		};
 		F6FF3FDC2C9D297B00796769 /* XCRemoteSwiftPackageReference "SymbolPicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/xnth97/SymbolPicker.git";
@@ -366,6 +382,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F60AA2502CA502EA009771E0 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F60AA24F2CA502EA009771E0 /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
+		};
 		F6FF3FDD2C9D297B00796769 /* SymbolPicker */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F6FF3FDC2C9D297B00796769 /* XCRemoteSwiftPackageReference "SymbolPicker" */;
