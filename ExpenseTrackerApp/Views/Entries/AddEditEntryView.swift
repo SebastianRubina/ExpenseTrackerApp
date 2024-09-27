@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TelemetryDeck
 
 struct AddEditEntryView: View {
     @Environment(\.dismiss) private var dismiss
@@ -112,6 +113,13 @@ struct AddEditEntryView: View {
                         }
                         
                         if !isEditMode {
+                            TelemetryDeck.signal(
+                                "Entry.Add",
+                                parameters: [
+                                    "name": "\(entry.name)",
+                                ]
+                            )
+                            
                             withAnimation {
                                 context.insert(entry)
                             }

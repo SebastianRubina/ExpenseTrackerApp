@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import Charts
+import TelemetryDeck
 
 struct InsightsView: View {
     @Environment(InsightsViewModel.self) private var insightsViewModel
@@ -40,6 +41,9 @@ struct InsightsView: View {
         .onAppear {
             insightsViewModel.entries = entries
             insightsViewModel.categories = categories
+            TelemetryDeck.signal(
+                "Insights.Visited"
+            )
         }
     }
     

@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import StoreKit
+import TelemetryDeck
 
 struct EntryListView: View {
     @Environment(\.modelContext) private var context
@@ -50,6 +51,9 @@ struct EntryListView: View {
                                         .swipeActions {
                                             Button {
                                                 withAnimation {
+                                                    TelemetryDeck.signal(
+                                                        "Entry.Delete"
+                                                    )
                                                     context.delete(entry)
                                                     try! context.save()
                                                 }
@@ -73,6 +77,11 @@ struct EntryListView: View {
                         }
                     }
                 }
+            }
+            .onAppear {
+                TelemetryDeck.signal(
+                    "App Loaded (\(entries.count) entries)"
+                )
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SymbolPicker
+import TelemetryDeck
 
 struct AddEditCategoryView: View {
     @Environment(\.dismiss) private var dismiss
@@ -71,6 +72,13 @@ struct AddEditCategoryView: View {
                         }
                         
                         if !isEditMode {
+                            TelemetryDeck.signal(
+                                "Category.Add",
+                                parameters: [
+                                    "name": "\(category.name)"
+                                ]
+                            )
+                            
                             withAnimation {
                                 context.insert(category)
                             }

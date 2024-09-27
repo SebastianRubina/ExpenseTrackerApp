@@ -35,11 +35,12 @@ struct RoadmapView: View {
     
     // List of upcoming features
     private let upcomingFeatures: [Feature] = [
-        Feature(title: "Customize currency settings", isCompleted: false),
+        Feature(title: "Customize currency settings", isCompleted: true),
         Feature(title: "Add widgets for quick access", isCompleted: false),
         Feature(title: "Track pending debts from others", isCompleted: false),
         Feature(title: "Share debts with borrowers", isCompleted: false),
-        Feature(title: "Gain deeper financial insights", isCompleted: false)
+        Feature(title: "Gain deeper financial insights", isCompleted: false),
+        Feature(title: "Allow for data to sync with cloud", isCompleted: false)
     ]
 }
 

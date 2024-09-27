@@ -7,3 +7,5 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
+
+TELEMETRY_DECK_APP_ID=7640CFE7-6E61-45B8-8EE9-DE996DEF3367

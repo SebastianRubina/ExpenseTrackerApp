@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TelemetryDeck
 
 struct CategoryListView: View {
     @Environment(\.modelContext) private var context
@@ -49,6 +50,13 @@ struct CategoryListView: View {
                         .confirmationDialog("Deleting a category will cascade to all of its entries. Are you sure you want to delete \(category.name)\(category.entries.count > 0 ? " and all its entries? (\(category.entries.count))" : "")?", isPresented: $showCategoryDeletionConfirmation, titleVisibility: .visible) {
                             Button("Delete", role: .destructive) {
                                 withAnimation {
+                                    TelemetryDeck.signal(
+                                        "Category.Delete",
+                                        parameters: [
+                                            "name": "\(category.name)"
+                                        ]
+                                    )
+                                    
                                     context.delete(category)
                                     try! context.save()
                                 }
