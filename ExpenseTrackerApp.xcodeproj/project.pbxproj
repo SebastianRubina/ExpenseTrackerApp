@@ -9,11 +9,42 @@
 /* Begin PBXBuildFile section */
 		F60AA2512CA502EA009771E0 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = F60AA2502CA502EA009771E0 /* Inject */; };
 		F60CFE2A2CA50C3A00F248FF /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = F60CFE292CA50C3A00F248FF /* TelemetryDeck */; };
+		F64B378D2CA646EA0060605B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64B378C2CA646EA0060605B /* WidgetKit.framework */; };
+		F64B378F2CA646EA0060605B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F64B378E2CA646EA0060605B /* SwiftUI.framework */; };
+		F64B379A2CA646EC0060605B /* ExpenseTrackerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F64B378B2CA646EA0060605B /* ExpenseTrackerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F67CD12B2CA11DD800912D10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67CD12A2CA11DD800912D10 /* StoreKit.framework */; };
 		F6FF3FDE2C9D297B00796769 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = F6FF3FDD2C9D297B00796769 /* SymbolPicker */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F64B37982CA646EC0060605B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6FF3FA72C9D023D00796769 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F64B378A2CA646EA0060605B;
+			remoteInfo = ExpenseTrackerWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F64B379B2CA646EC0060605B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F64B379A2CA646EC0060605B /* ExpenseTrackerWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F64B378B2CA646EA0060605B /* ExpenseTrackerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ExpenseTrackerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64B378C2CA646EA0060605B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F64B378E2CA646EA0060605B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F64B37A12CA64C1C0060605B /* ExpenseTrackerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExpenseTrackerWidgetExtension.entitlements; sourceTree = "<group>"; };
 		F67CD12A2CA11DD800912D10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F6FF3FAF2C9D023D00796769 /* ExpenseTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -26,9 +57,24 @@
 			);
 			target = F6FF3FAE2C9D023D00796769 /* ExpenseTrackerApp */;
 		};
+		F64B379F2CA646EC0060605B /* Exceptions for "ExpenseTrackerWidget" folder in "ExpenseTrackerWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F64B378A2CA646EA0060605B /* ExpenseTrackerWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		F64B37902CA646EA0060605B /* ExpenseTrackerWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F64B379F2CA646EC0060605B /* Exceptions for "ExpenseTrackerWidget" folder in "ExpenseTrackerWidgetExtension" target */,
+			);
+			path = ExpenseTrackerWidget;
+			sourceTree = "<group>";
+		};
 		F6FF3FB12C9D023D00796769 /* ExpenseTrackerApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -40,6 +86,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F64B37882CA646EA0060605B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F64B378F2CA646EA0060605B /* SwiftUI.framework in Frameworks */,
+				F64B378D2CA646EA0060605B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F6FF3FAC2C9D023D00796769 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				F67CD12A2CA11DD800912D10 /* StoreKit.framework */,
+				F64B378C2CA646EA0060605B /* WidgetKit.framework */,
+				F64B378E2CA646EA0060605B /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -65,7 +122,9 @@
 		F6FF3FA62C9D023D00796769 = {
 			isa = PBXGroup;
 			children = (
+				F64B37A12CA64C1C0060605B /* ExpenseTrackerWidgetExtension.entitlements */,
 				F6FF3FB12C9D023D00796769 /* ExpenseTrackerApp */,
+				F64B37902CA646EA0060605B /* ExpenseTrackerWidget */,
 				F67CD1292CA11DD800912D10 /* Frameworks */,
 				F6FF3FB02C9D023D00796769 /* Products */,
 			);
@@ -75,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				F6FF3FAF2C9D023D00796769 /* ExpenseTrackerApp.app */,
+				F64B378B2CA646EA0060605B /* ExpenseTrackerWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,6 +142,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F64B378A2CA646EA0060605B /* ExpenseTrackerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F64B379E2CA646EC0060605B /* Build configuration list for PBXNativeTarget "ExpenseTrackerWidgetExtension" */;
+			buildPhases = (
+				F64B37872CA646EA0060605B /* Sources */,
+				F64B37882CA646EA0060605B /* Frameworks */,
+				F64B37892CA646EA0060605B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F64B37902CA646EA0060605B /* ExpenseTrackerWidget */,
+			);
+			name = ExpenseTrackerWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ExpenseTrackerWidgetExtension;
+			productReference = F64B378B2CA646EA0060605B /* ExpenseTrackerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F6FF3FAE2C9D023D00796769 /* ExpenseTrackerApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6FF3FBD2C9D023E00796769 /* Build configuration list for PBXNativeTarget "ExpenseTrackerApp" */;
@@ -89,10 +171,12 @@
 				F6FF3FAB2C9D023D00796769 /* Sources */,
 				F6FF3FAC2C9D023D00796769 /* Frameworks */,
 				F6FF3FAD2C9D023D00796769 /* Resources */,
+				F64B379B2CA646EC0060605B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F64B37992CA646EC0060605B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F6FF3FB12C9D023D00796769 /* ExpenseTrackerApp */,
@@ -117,6 +201,9 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					F64B378A2CA646EA0060605B = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					F6FF3FAE2C9D023D00796769 = {
 						CreatedOnToolsVersion = 16.0;
 					};
@@ -142,11 +229,19 @@
 			projectRoot = "";
 			targets = (
 				F6FF3FAE2C9D023D00796769 /* ExpenseTrackerApp */,
+				F64B378A2CA646EA0060605B /* ExpenseTrackerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F64B37892CA646EA0060605B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F6FF3FAD2C9D023D00796769 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +252,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F64B37872CA646EA0060605B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F6FF3FAB2C9D023D00796769 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -166,7 +268,71 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F64B37992CA646EC0060605B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F64B378A2CA646EA0060605B /* ExpenseTrackerWidgetExtension */;
+			targetProxy = F64B37982CA646EC0060605B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		F64B379C2CA646EC0060605B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T65WQ4R2H2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExpenseTrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ExpenseTrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebastianrubina.ExpenseTrackerApp.ExpenseTrackerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F64B379D2CA646EC0060605B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T65WQ4R2H2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExpenseTrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ExpenseTrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sebastianrubina.ExpenseTrackerApp.ExpenseTrackerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F6FF3FBB2C9D023E00796769 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = F6FF3FB12C9D023D00796769 /* ExpenseTrackerApp */;
@@ -299,6 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerApp/ExpenseTrackerApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTrackerApp/Preview Content\"";
@@ -306,6 +473,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExpenseTrackerApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Money Manager";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -333,6 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExpenseTrackerApp/ExpenseTrackerApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExpenseTrackerApp/Preview Content\"";
@@ -340,6 +510,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExpenseTrackerApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Money Manager";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -365,6 +537,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F64B379E2CA646EC0060605B /* Build configuration list for PBXNativeTarget "ExpenseTrackerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F64B379C2CA646EC0060605B /* Debug */,
+				F64B379D2CA646EC0060605B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F6FF3FAA2C9D023D00796769 /* Build configuration list for PBXProject "ExpenseTrackerApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

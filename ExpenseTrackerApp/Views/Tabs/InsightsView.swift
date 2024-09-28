@@ -12,7 +12,12 @@ import TelemetryDeck
 
 struct InsightsView: View {
     @Environment(InsightsViewModel.self) private var insightsViewModel
-    @AppStorage("selectedCurrency") private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
+    @AppStorage(
+        "selectedCurrency",
+        store: UserDefaults(
+            suiteName: "group.com.sebastianrubina.ExpenseTrackerApp"
+        )
+    ) private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
     
     @Query(sort: \Entry.date) private var entries: [Entry]
     @Query private var categories: [Category]

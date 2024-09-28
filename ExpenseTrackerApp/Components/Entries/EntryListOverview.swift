@@ -10,7 +10,14 @@ import SwiftData
 
 struct EntryListOverview: View {
     @Query private var entries: [Entry]
-    @AppStorage("selectedCurrency") private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
+    @AppStorage(
+        "selectedCurrency",
+        store: UserDefaults(
+            suiteName: "group.com.sebastianrubina.ExpenseTrackerApp"
+        )
+    ) private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
+    @AppStorage("totalExpensesOfTheMonth", store: UserDefaults(suiteName: "group.com.sebastianrubina.ExpenseTrackerApp")) private var totalExpensesOfTheMonth: Double = 0.0
+    
     @State private var selectedTimeFilter: TimeFilter = .thisMonth
     
     var currentMonthName: String {
@@ -63,6 +70,19 @@ struct EntryListOverview: View {
             }
             .frame(height: 20)
         }
+        .onAppear {
+            totalExpensesOfTheMonth = calculateTotalExpensesOfTheMonth()
+        }
+    }
+    
+    func calculateTotalExpensesOfTheMonth() -> Double {
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: now))!
+        
+        // Filter entries for the current month and sum up the expenses
+        let monthlyExpenseEntries = entries.filter { $0.date >= startOfMonth && $0.date <= now && $0.type == .expense }
+        return monthlyExpenseEntries.reduce(0) { $0 + $1.amount }
     }
     
     enum TimeFilter: String, CaseIterable, Identifiable {

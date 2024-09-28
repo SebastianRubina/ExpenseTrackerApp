@@ -7,10 +7,16 @@
 
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 struct SettingsView: View {
     @AppStorage("warningThreshold") private var warningThreshold: String = "100"
-    @AppStorage("selectedCurrency") private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
+    @AppStorage(
+        "selectedCurrency",
+        store: UserDefaults(
+            suiteName: "group.com.sebastianrubina.ExpenseTrackerApp"
+        )
+    ) private var selectedCurrency: String = Locale.current.currency?.identifier ?? "USD"
     
     @Environment(StoreViewModel.self) private var storeViewModel
     var body: some View {
@@ -61,6 +67,9 @@ struct SettingsView: View {
                             Text("\(currencyName(currencyCode: currencyCode)) (\(currencyCode))")
                                 .tag(currencyCode)
                         }
+                    }
+                    .onChange(of: selectedCurrency) {
+                        WidgetCenter.shared.reloadTimelines(ofKind: "ExpenseTrackerWidget")
                     }
                 }
                 

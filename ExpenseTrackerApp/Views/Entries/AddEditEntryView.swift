@@ -8,11 +8,14 @@
 import SwiftUI
 import SwiftData
 import TelemetryDeck
+import WidgetKit
 
 struct AddEditEntryView: View {
+    @AppStorage("totalExpensesOfTheMonth", store: UserDefaults(suiteName: "group.com.sebastianrubina.ExpenseTrackerApp")) private var totalExpensesOfTheMonth: Double = 0.0
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
     @Query(sort: \Category.name) private var categories: [Category]
+    @Query private var entries: [Entry]
     
     @Binding var entryToEdit: Entry?
     @State private var isEditMode: Bool = false
@@ -126,6 +129,10 @@ struct AddEditEntryView: View {
                         }
                         
                         try! context.save()
+                        
+                        totalExpensesOfTheMonth = InsightsViewModel.calculateTotalSpentThisMonth(from: entries)
+                        WidgetCenter.shared.reloadTimelines(ofKind: "ExpenseTrackerWidget")
+                        
                         dismiss()
                     }
                     .buttonStyle(.borderedProminent)

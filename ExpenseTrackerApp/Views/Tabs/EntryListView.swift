@@ -9,8 +9,11 @@ import SwiftUI
 import SwiftData
 import StoreKit
 import TelemetryDeck
+import WidgetKit
 
 struct EntryListView: View {
+    @AppStorage("totalExpensesOfTheMonth", store: UserDefaults(suiteName: "group.com.sebastianrubina.ExpenseTrackerApp")) private var totalExpensesOfTheMonth: Double = 0.0
+    
     @Environment(\.modelContext) private var context
     @Environment(\.requestReview) private var requestReview
     @AppStorage("warningThreshold") private var warningThreshold = "100"
@@ -54,8 +57,13 @@ struct EntryListView: View {
                                                     TelemetryDeck.signal(
                                                         "Entry.Delete"
                                                     )
+                                                    
                                                     context.delete(entry)
                                                     try! context.save()
+                                                    
+                                                    totalExpensesOfTheMonth = InsightsViewModel.calculateTotalSpentThisMonth(from: entries)
+                                                    
+                                                    WidgetCenter.shared.reloadTimelines(ofKind: "ExpenseTrackerWidget")
                                                 }
                                             } label: {
                                                 Label("Delete", systemImage: "trash")
@@ -97,6 +105,8 @@ struct EntryListView: View {
                 if entries.count % 20 == 0 {
                     requestReview()
                 }
+                
+                entryToEdit = nil
             } content: {
                 AddEditEntryView(entryToEdit: $entryToEdit)
             }
